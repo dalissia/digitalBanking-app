@@ -1,9 +1,6 @@
 package org.bd.demo.services;
 
-import org.bd.demo.dtos.BankAccountDTO;
-import org.bd.demo.dtos.CurrentBankAccountDTO;
-import org.bd.demo.dtos.CustomerDTO;
-import org.bd.demo.dtos.SavingBankAccountDTO;
+import org.bd.demo.dtos.*;
 import org.bd.demo.entities.BankAccount;
 import org.bd.demo.exceptions.BalanceNotSufficientException;
 import org.bd.demo.exceptions.BankAccountNotFoundException;
@@ -29,4 +26,6 @@ public interface BankAccountService {
     CustomerDTO updateCustomer(CustomerDTO customerDTO);
 
     void deleteCustomer(Long id);
+
+    List<AccountOperationDTO>  accountHistory(String accountId);
 }

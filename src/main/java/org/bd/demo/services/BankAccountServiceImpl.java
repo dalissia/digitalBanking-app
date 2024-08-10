@@ -3,10 +3,7 @@ package org.bd.demo.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.bd.demo.dtos.BankAccountDTO;
-import org.bd.demo.dtos.CurrentBankAccountDTO;
-import org.bd.demo.dtos.CustomerDTO;
-import org.bd.demo.dtos.SavingBankAccountDTO;
+import org.bd.demo.dtos.*;
 import org.bd.demo.entities.*;
 import org.bd.demo.enums.OperationType;
 import org.bd.demo.exceptions.BalanceNotSufficientException;
@@ -148,7 +145,7 @@ public class BankAccountServiceImpl implements  BankAccountService  {
     public List<BankAccountDTO> bankAccountList(){
         List<BankAccount> bankAccounts = bankAccountRepository.findAll();
         List<BankAccountDTO> bankAccountDTOS = bankAccounts.stream().map(bankAccount -> {
-            if(bankAccount instanceof  SavingAccount){
+            if (bankAccount instanceof SavingAccount) {
                 SavingAccount savingAccount = (SavingAccount) bankAccount;
                 return dtoMapper.fromSavingBankAccount(savingAccount);
             } else {
@@ -156,7 +153,8 @@ public class BankAccountServiceImpl implements  BankAccountService  {
                 return dtoMapper.fromCurrentBankAccount(currentAccount);
             }
         }).collect(Collectors.toList());
-    return bankAccountDTOS;}
+        return bankAccountDTOS;
+    }
 
     @Override
     public CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException {
@@ -177,7 +175,12 @@ public class BankAccountServiceImpl implements  BankAccountService  {
     public void deleteCustomer(Long customerId){
         customerRepository.deleteById(customerId);
     }
+    @Override
+    public List<AccountOperationDTO>  accountHistory(String accountId){
+        List <AccountOperation> accountOperation = accountOperationRepository.findByBankAccountId(accountId);
+        return accountOperation.stream().map(op -> dtoMapper.fromAccountOperation(op)).collect(Collectors.toList());
 
+    }
 
 
 }

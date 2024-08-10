@@ -1,8 +1,8 @@
 package org.bd.demo.web;
 
 
+import org.bd.demo.dtos.AccountOperationDTO;
 import org.bd.demo.dtos.BankAccountDTO;
-import org.bd.demo.entities.BankAccount;
 import org.bd.demo.exceptions.BankAccountNotFoundException;
 import org.bd.demo.services.BankAccountService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,11 +25,14 @@ public class BankAccountRestAPI {
         return  bankAccountService.getBankAccount(accountId);
     }
 
-  /*@GetMapping("/accounts")
-        public List<BankAccountDTO> listAccount(){
-            return bankAccountService.bankAccountList();
-
-   */
+  @GetMapping("/accounts")
+        public List<BankAccountDTO> listAccounts() {
+      return bankAccountService.bankAccountList();
+  }
+   @GetMapping("/accounts/{accountId}/operations")
+    public List<AccountOperationDTO> getHistory(@PathVariable String accountId){
+        return bankAccountService.accountHistory(accountId);
+   }
     }
 
 
