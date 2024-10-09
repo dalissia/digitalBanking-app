@@ -55,6 +55,20 @@ Pour accéder à l'API, utilise les identifiants suivants :
          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYxODgzMTI1NSwiZXhwIjoxNjE4ODMzMDU1fQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
        }
 Après avoir obtenu le token JWT, ouvre Swagger UI, clique sur Authorize, et colle le token dans le champ.
+
+## Technologies utilisées
+- Java
+- Spring Boot
+- Spring Security
+- Hibernate
+- OpenAPI
+- JWT
+
+## Installation
+1. Clone le repository :
+   ```bash
+   git clone https://github.com/tonutilisateur/digital-banking-api.git
+   
 ### Reference Documentation
 For further reference, please consider the following sections:
 
